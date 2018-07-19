@@ -22,3 +22,6 @@ in the console. You will be able to see:
 - Volume label information,
 - the disk directory,
 - a list of offsets to all the Videotex pages the disk contains.
+
+You can also have a look at `analyzer/analyzer.html` and `analyzer/analyzer.js`.
+`analyzer/analyzer.html` can be directly opened in Firefox.

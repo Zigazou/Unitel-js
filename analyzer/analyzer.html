@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Unitel analyzer</title>
+    <style>
+      body { font-family: sans-serif; }
+      .hidden { display: none; }
+      .hx-row { font-family: monospace; font-size: 150%; }
+      .hx-address { font-weight: bold; margin-right: 1em; }
+      .hx-hx-ctrl, .hx-ch-ctrl { color: #888; }
+      .hx-hx-std, .hx-ch-std { color: #000; }
+      .hx-hx-no, .hx-ch-no { color: transparent; }
+      h2 { border-top: 0.1em solid #000; padding-top: 0.5em; }
+      form { color: #fff; background-color: #008; padding: 1em;}
+    </style>
+  </head>
+  <body>
+    <form>
+      <label for="unitel-file">Select a Unitel disk image to analyze:</label>
+      <input type="file" id="unitel-file" name="unitel-file">
+    </form>
+
+    <div id="error" class="hidden">
+      <h1>Error</h1>
+      <div id="error-message"></div>
+    </div>
+
+    <div id="results" class="hidden">
+      <h1>Volume information</h1>
+      <p><strong>Label:</strong> <span id="volume-label"></span></p>
+      <p><strong>Locked:</strong> <span id="volume-locked"></span></p>
+      <p><strong>Owner:</strong> <span id="volume-owner"></span></p>
+      <p><strong>Sides:</strong> <span id="volume-sides"></span></p>
+      <p><strong>Double density:</strong> <span id="volume-density"></span></p>
+      <p><strong>Sector size:</strong> <span id="volume-bps"></span></p>
+      <p><strong>Sector sequence:</strong> <span id="volume-sequence"></span></p>
+      <p><strong>Label standard:</strong> <span id="volume-standard"></span></p>
+  
+      <h1>Directory</h1>
+      <div id="directory"></div>
+
+      <h1>Videotex catalog</h1>
+      <h2>Page 001</h2><div id="catalog-1"></div>
+      <h2>Page 002</h2><div id="catalog-2"></div>
+      <h2>Page 003</h2><div id="catalog-3"></div>
+      <h2>Page 004</h2><div id="catalog-4"></div>
+      <h2>Page 005</h2><div id="catalog-5"></div>
+      <h2>Page 006</h2><div id="catalog-6"></div>
+      <h2>Page 007</h2><div id="catalog-7"></div>
+      <h2>Page 008</h2><div id="catalog-8"></div>
+      <h2>Page 009</h2><div id="catalog-9"></div>
+      <h2>Page 010</h2><div id="catalog-10"></div>
+      <h2>Page 011</h2><div id="catalog-11"></div>
+      <h2>Page 012</h2><div id="catalog-12"></div>
+      <h2>Page 013</h2><div id="catalog-13"></div>
+      <h2>Page 014</h2><div id="catalog-14"></div>
+      <h2>Page 015</h2><div id="catalog-15"></div>
+      <h2>Page 016</h2><div id="catalog-16"></div>
+      <h2>Page 017</h2><div id="catalog-17"></div>
+      <h2>Page 018</h2><div id="catalog-18"></div>
+      <h2>Page 019</h2><div id="catalog-19"></div>
+      <h2>Page 020</h2><div id="catalog-20"></div>
+      <h2>Page 021</h2><div id="catalog-21"></div>
+      <h2>Page 022</h2><div id="catalog-22"></div>
+      <h2>Page 023</h2><div id="catalog-23"></div>
+      <h2>Page 024</h2><div id="catalog-24"></div>
+      <h2>Page 025</h2><div id="catalog-25"></div>
+      <h2>Page 026</h2><div id="catalog-26"></div>
+      <h2>Page 027</h2><div id="catalog-27"></div>
+      <h2>Page 028</h2><div id="catalog-28"></div>
+      <h2>Page 029</h2><div id="catalog-29"></div>
+      <h2>Page 030</h2><div id="catalog-30"></div>
+      <h2>Page 031</h2><div id="catalog-31"></div>
+      <h2>Page 032</h2><div id="catalog-32"></div>
+      <h2>Page 033</h2><div id="catalog-33"></div>
+      <h2>Page 034</h2><div id="catalog-34"></div>
+      <h2>Page 035</h2><div id="catalog-35"></div>
+      <h2>Page 036</h2><div id="catalog-36"></div>
+      <h2>Page 037</h2><div id="catalog-37"></div>
+      <h2>Page 038</h2><div id="catalog-38"></div>
+      <h2>Page 039</h2><div id="catalog-39"></div>
+      <h2>Page 040</h2><div id="catalog-40"></div>
+      <h2>Page 041</h2><div id="catalog-41"></div>
+      <h2>Page 042</h2><div id="catalog-42"></div>
+      <h2>Page 043</h2><div id="catalog-43"></div>
+      <h2>Page 044</h2><div id="catalog-44"></div>
+      <h2>Page 045</h2><div id="catalog-45"></div>
+      <h2>Page 046</h2><div id="catalog-46"></div>
+      <h2>Page 047</h2><div id="catalog-47"></div>
+      <h2>Page 048</h2><div id="catalog-48"></div>
+      <h2>Page 049</h2><div id="catalog-49"></div>
+      <h2>Page 050</h2><div id="catalog-50"></div>
+      <h2>Page 051</h2><div id="catalog-51"></div>
+      <h2>Page 052</h2><div id="catalog-52"></div>
+      <h2>Page 053</h2><div id="catalog-53"></div>
+      <h2>Page 054</h2><div id="catalog-54"></div>
+      <h2>Page 055</h2><div id="catalog-55"></div>
+      <h2>Page 056</h2><div id="catalog-56"></div>
+      <h2>Page 057</h2><div id="catalog-57"></div>
+      <h2>Page 058</h2><div id="catalog-58"></div>
+      <h2>Page 059</h2><div id="catalog-59"></div>
+      <h2>Page 060</h2><div id="catalog-60"></div>
+      <h2>Page 061</h2><div id="catalog-61"></div>
+      <h2>Page 062</h2><div id="catalog-62"></div>
+      <h2>Page 063</h2><div id="catalog-63"></div>
+      <h2>Page 064</h2><div id="catalog-64"></div>
+      <h2>Page 065</h2><div id="catalog-65"></div>
+      <h2>Page 066</h2><div id="catalog-66"></div>
+      <h2>Page 067</h2><div id="catalog-67"></div>
+      <h2>Page 068</h2><div id="catalog-68"></div>
+      <h2>Page 069</h2><div id="catalog-69"></div>
+      <h2>Page 070</h2><div id="catalog-70"></div>
+      <h2>Page 071</h2><div id="catalog-71"></div>
+      <h2>Page 072</h2><div id="catalog-72"></div>
+      <h2>Page 073</h2><div id="catalog-73"></div>
+      <h2>Page 074</h2><div id="catalog-74"></div>
+      <h2>Page 075</h2><div id="catalog-75"></div>
+      <h2>Page 076</h2><div id="catalog-76"></div>
+      <h2>Page 077</h2><div id="catalog-77"></div>
+      <h2>Page 078</h2><div id="catalog-78"></div>
+      <h2>Page 079</h2><div id="catalog-79"></div>
+      <h2>Page 080</h2><div id="catalog-80"></div>
+      <h2>Page 081</h2><div id="catalog-81"></div>
+      <h2>Page 082</h2><div id="catalog-82"></div>
+      <h2>Page 083</h2><div id="catalog-83"></div>
+      <h2>Page 084</h2><div id="catalog-84"></div>
+      <h2>Page 085</h2><div id="catalog-85"></div>
+      <h2>Page 086</h2><div id="catalog-86"></div>
+      <h2>Page 087</h2><div id="catalog-87"></div>
+      <h2>Page 088</h2><div id="catalog-88"></div>
+      <h2>Page 089</h2><div id="catalog-89"></div>
+      <h2>Page 090</h2><div id="catalog-90"></div>
+      <h2>Page 091</h2><div id="catalog-91"></div>
+      <h2>Page 092</h2><div id="catalog-92"></div>
+      <h2>Page 093</h2><div id="catalog-93"></div>
+      <h2>Page 094</h2><div id="catalog-94"></div>
+      <h2>Page 095</h2><div id="catalog-95"></div>
+      <h2>Page 096</h2><div id="catalog-96"></div>
+      <h2>Page 097</h2><div id="catalog-97"></div>
+      <h2>Page 098</h2><div id="catalog-98"></div>
+      <h2>Page 099</h2><div id="catalog-99"></div>
+      <h2>Page 100</h2><div id="catalog-100"></div>
+    </div>
+
+    <script src="../constant.js"></script>
+    <script src="../disk-geometry.js"></script>
+    <script src="../ebcdic-to-vdt.js"></script>
+    <script src="../sector-address.js"></script>
+    <script src="../empty-entry.js"></script>
+    <script src="../error-map.js"></script>
+    <script src="../volume-label.js"></script>
+    <script src="../data-set.js"></script>
+    <script src="../make-catalog-entry.js"></script>
+    <script src="../unitel-disk.js"></script>
+
+    <script src="analyzer.js"></script>
+  </body>
+</html>
