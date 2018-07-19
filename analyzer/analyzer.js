@@ -48,7 +48,6 @@ Analyzer.analyzeUnitelDisk = function(unitelDisk) {
     // Directory
     let output = ""
     for(let entry of unitelDisk.dir()) {
-        console.log(entry)
         output += '<h2>' + entry.identifier + '</h2>'
                 + '<p><strong>Block length/Physical record length:</strong> '
                 + entry.blockLength.toString() + '/'
